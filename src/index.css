@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0b12;
+  --bg-2: #12141d;
+  --panel: #171927;
+  --panel-2: #1e2131;
+  --border: #262a3d;
+  --border-2: #363b52;
+  --text: #e6e8f0;
+  --muted: #8b90a8;
+  --accent: #a78bfa;
+  --status-todo: #64748b;
+  --status-progress: #38bdf8;
+  --status-review: #fbbf24;
+  --status-done: #22c55e;
+  --status-blocked: #ef4444;
+  --critical: #f472b6;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* React Flow theming */
+.react-flow {
+  background: radial-gradient(circle at 50% 50%, #12141d 0%, #06070c 100%);
+}
+.react-flow__background {
+  color: #1a1d2e;
+}
+.react-flow__controls {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+.react-flow__controls-button {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  fill: var(--text);
+}
+.react-flow__controls-button:hover {
+  background: var(--panel-2);
+}
+.react-flow__minimap {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.react-flow__attribution {
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+}
+.react-flow__handle {
+  background: var(--border-2);
+  border: 2px solid var(--bg);
+  width: 10px;
+  height: 10px;
+}
+.react-flow__edge-path {
+  stroke: var(--border-2);
+  stroke-width: 2;
+}
+.react-flow__edge.critical .react-flow__edge-path {
+  stroke: var(--critical);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.5));
+}
+.react-flow__edge.dimmed .react-flow__edge-path {
+  stroke: #2a2d40;
+  opacity: 0.3;
+}
+
+@keyframes pulse-blocked {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7), 0 8px 24px rgba(0, 0, 0, 0.5); }
+  50%      { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.0), 0 8px 24px rgba(0, 0, 0, 0.5); }
+}
+.node-blocked {
+  animation: pulse-blocked 2s infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #4a5069; }
